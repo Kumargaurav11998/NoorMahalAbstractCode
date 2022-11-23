@@ -114,14 +114,9 @@ const [Data,setData] = useState(data)
               </View>
             </View>
           </View>
-          <View style={{ marginTop: heightToDp('4'), alignItems: 'center' }}>
+          <View style={Styles.UnderLine}>
             <Text
-              style={{
-                fontSize: 1,
-                borderBottomWidth: 1,
-                color: "#a9a9a9",
-                width: widthToDp('85')
-              }}
+              style={Styles.UnderLineText}
             ></Text>
           </View>
         </View>
@@ -131,10 +126,10 @@ const [Data,setData] = useState(data)
      })}
 
     </SafeAreaView>
-    <View style={{height:heightToDp('0.1')}}>
-        <View style={{ bottom: heightToDp('10'),width:widthToDp('25') }}>
+    <View style={Styles.BackMainView}>
+        <View style={Styles.MainView}>
           <TouchableOpacity onPress={() => props.navigation.replace('Menu')}>
-            <View style={{ height: heightToDp('8.5'), width: widthToDp('17.5'), borderRadius: widthToDp('15'), marginStart: widthToDp('5'), marginBottom: heightToDp('1'), backgroundColor: 'rgb(255,130,50)', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={Styles.BackView}>
             <AntDesign name='arrowleft' color={'#fff'} size={25} />
             </View>
           </TouchableOpacity>

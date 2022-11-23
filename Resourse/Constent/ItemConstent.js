@@ -1,0 +1,5 @@
+export const ItemConstent={
+    GET_ITEM_REQUEST : 'GET_ITEM_REQUEST',
+    GET_ITEM_SUCCESS : 'GET_ITEM_SUCCESS',
+    GET_ITEM_FAILURE : 'GET_ITEM_FAILURE',
+}

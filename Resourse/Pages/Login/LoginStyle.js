@@ -46,6 +46,9 @@ const Styles = StyleSheet.create({
     IconView: {
         justifyContent: 'center'
     },
+    IconText:{
+        fontWeight:'bold'
+    },
     ForgetView: {
         marginTop: heightToDp('5')
     },

@@ -12,7 +12,6 @@ import { BottomSheet } from 'react-native-btr';
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import {BANEERAction} from '../../Action/BaneerAction'
-import { BottomSheet } from 'react-native-btr'
 export default function MenuList(props) {
 
   const data = [
@@ -51,7 +50,7 @@ Mushroom,Onion
       setSearchData(data);
     }
   }
-  const token= useSelector(state=>state.LoginReducer.Login[0].token)
+  const token= useSelector(state=>state.LoginReducer.Login[0].token);
   const [checked,setChecked] = useState([])
   const [loader, setloader] = useState(true);
   const [searchdata, setSearchData] = useState(data);

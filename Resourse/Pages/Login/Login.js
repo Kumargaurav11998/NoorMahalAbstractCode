@@ -75,10 +75,9 @@ barStyle={'dark-content'}
        </View>
        <View style={Styles.IconView}>
         <TouchableOpacity onPress={()=>setIsSecureText(e=>!e)}>
-            {isSecureText?<Feather name='eye-off' size={20} color={'#000'} style={{fontWeight:'bold'}} />
-        :<Feather name='eye' size={20} color={'#000'} style={{fontWeight:'bold'}} />    
+            {isSecureText?<Feather name='eye-off' size={20} color={'#000'} style={Styles.IconText} />
+        :<Feather name='eye' size={20} color={'#000'} style={Styles.IconText} />    
         }
-        
         </TouchableOpacity>
        </View>
     </View>

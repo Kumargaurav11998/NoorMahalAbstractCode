@@ -4,6 +4,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
 import { heightToDp, widthToDp } from '../../Utils/Responsive'
 import { useState } from 'react'
+import Styles from './Order_HistoryStyle'
 export default function Order_History(props) {
 
   const data = [
@@ -36,84 +37,75 @@ export default function Order_History(props) {
   return (
     <>
 
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-        <View style={{ flexDirection: 'row', marginTop: heightToDp('4'), marginStart: widthToDp('3'), justifyContent: 'space-between' }}>
-          <View style={{ marginStart: widthToDp('5') }}>
-            <Text style={{ color: '#000', fontSize: widthToDp('6'), fontWeight: 'bold' }}>Order History</Text>
+<SafeAreaView style={Styles.container}>
+      <View style={Styles.TopView}>
+        <View style={Styles.TopTextView}>
+          <Text style={Styles.TopText}>Reservation</Text>
+        </View>
+        <View style={Styles.Icon1}>
+        <TouchableOpacity onPress={()=>props.navigation.openDrawer()} >
+                            <Entypo name='grid' size={33} color={'rgb(252,73,17)'} />
+                        </TouchableOpacity>
+        </View>
+      </View>
+     {Data.map((item)=>{
+      return(
+        <View style={Styles.ChildView}>
+        <View>
+          <View style={Styles.Code}>
+            <Text style={Styles.CodeText}>{item.code}</Text>
           </View>
-          <View style={{ marginEnd: widthToDp('6') }}>
-            <TouchableOpacity onPress={()=>props.navigation.openDrawer()} >
-              <Entypo name='grid' size={33} color={'rgb(252,73,17)'} />
+          <View style={Styles.NameCallView}>
+            <View style={Styles.Name}>
+              <Text style={Styles.NameText}>{item.name}</Text>
+            </View>
+            <View style={Styles.Name}>
+              <Text style={Styles.NameText}>{item.phone}</Text>
+            </View>
+            <TouchableOpacity onPress={()=>Dialer()}>
+              <View style={Styles.Call} >
+                <Text style={Styles.CallText}>Call</Text>
+              </View>
             </TouchableOpacity>
           </View>
-        </View>
-        <ScrollView>
+          <View style={Styles.Date}>
+            <Text style={Styles.DateText}>Date:{item.Date}</Text>
+          </View>
+          <View style={Styles.Time}>
+            <Text style={Styles.TimeText}>Time:{item.Time}</Text>
+          </View>
+          <View style={Styles.Time}>
+            <Text style={Styles.Guest}>Number of Guest:{item.Guest}</Text>
+          </View>
+          <View style={Styles.Time}>
+            <Text style={Styles.Guest}>Spacial Instruction</Text>
+          </View>
+          <View style={Styles.TableCancel}>
+            <TouchableOpacity onPress={()=>Cancel()}>
+              <View style={Styles.Cancel}>
+                <Text style={Styles.CancelText}>Cancel</Text>
+              </View>
+            </TouchableOpacity>
 
-
-        {Data.map((item)=>{
-          return(
-            <View style={{ marginTop: heightToDp('4'),marginBottom:heightToDp('1') }}>
-            <View>
-              <View style={{ marginStart: widthToDp('15') }}>
-                <Text style={{ color: 'rgb(255,91,5)' }}>{item.code}</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('1.5') }}>
-                <Text style={{ color: '#000', fontWeight: 'bold', fontSize: widthToDp('4') }}>{item.name}</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('0.7') }}>
-                <Text style={{ color: '#000', fontWeight: 'bold', fontSize: widthToDp('4') }}>{item.phone}</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('0.7') }}>
-                <Text style={{ color: '#000', fontWeight: 'bold', fontSize: widthToDp('4') }}>{item.email}</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('1') }}>
-                <Text style={{ color: '#000', fontWeight: 'bold', fontSize: widthToDp('4') }}>₹{item.Price}.00</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('0.7') }}>
-                <Text style={{ color: '#000' }}>Date:{item.Date}</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('0.7') }}>
-                <Text style={{ color: '#000' }}>Time:{item.Time}</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('0.7') }}>
-                <Text style={{ color: '#000' }}>Number of Guest:{item.Guest}</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('0.7') }}>
-                <Text style={{ color: '#000' }}>Spacial Instruction</Text>
-              </View>
-              <View style={{ marginStart: widthToDp('6'), marginTop: heightToDp('0.7') }}>
-                <Text style={{ color: '#000' }}>{item.Loaction}</Text>
-              </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: heightToDp('2') }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('View')}>
-                  <View style={{ borderWidth: 1, width: widthToDp('35'), height: heightToDp('5'), borderRadius: widthToDp('20'), justifyContent: 'center', alignItems: 'center', borderColor: 'rgb(0,155,68)' }}>
-                    <Text style={{ fontSize: widthToDp('4'), color: 'rgb(0,155,68)', fontWeight: 'bold' }}>View Order</Text>
-                  </View>
-                </TouchableOpacity>
-  
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Text style={{ color: 'rgb(0,155,68)', fontSize: widthToDp('4') }}>Delivered</Text>
-                  <View style={{ marginStart: widthToDp('3') }}>
-                    <AntDesign name='checkcircleo' size={20} color={'rgb(0,155,68)'} />
-                  </View>
-                </View>
-              </View>
-              <View style={{ marginTop: heightToDp('4'), alignItems: 'center' }}>
-                <Text
-                  style={{
-                    fontSize: 1,
-                    borderBottomWidth: 1,
-                    color: "#a9a9a9",
-                    width: widthToDp('85')
-                  }}
-                ></Text>
+            <View style={Styles.Table}>
+              <Text style={Styles.TableText}>Table Confirmed</Text>
+              <View style={Styles.Icon}>
+                <AntDesign name='checkcircleo' size={20} color={'rgb(0,155,68)'} />
               </View>
             </View>
           </View>
-          )
-        })}
-        </ScrollView>
-      </SafeAreaView>
+          <View style={Styles.UnderLine}>
+            <Text
+              style={Styles.UnderLineText}
+            ></Text>
+          </View>
+        </View>
+      </View>
+      )
+
+     })}
+
+    </SafeAreaView>
       <View style={{ height: heightToDp('0.1') }}>
         <View style={{ bottom: heightToDp('10'), width: widthToDp('25') }}>
           <TouchableOpacity onPress={() => props.navigation.replace('Menu')}>
