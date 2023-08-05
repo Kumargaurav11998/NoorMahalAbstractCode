@@ -7,6 +7,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { heightToDp, widthToDp } from '../../Utils/Responsive'
 import { BBQLogo, Card1, Card2, HomeLogo, HomeLogo1, MYCartLogo1, SplashLogo } from '../../Utils/Image'
+import AboutStyles from './AboutStyle'
 export default function About(props) {
   const [press, setPress] = useState(0);
   const [show, setShow] = useState(false)
@@ -29,35 +30,39 @@ export default function About(props) {
 // }
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <SafeAreaView style={AboutStyles.container}>
 
-          <View style={{ flexDirection: 'row', marginEnd: widthToDp('4'), marginTop: heightToDp('4'),justifyContent:'space-between' }}>
+          <View style={AboutStyles.TopView}>
             
-        <View style={{ marginStart: widthToDp('6')}}>
-          <Text style={{ color: '#000', fontSize: widthToDp('6'), fontWeight: 'bold' }}>About</Text>
+        <View style={AboutStyles.AboutView}>
+          <Text style={AboutStyles.AboutText}>About</Text>
         </View>
-        <View style={{ justifyContent: 'center' }}>
+        <View style={AboutStyles.Grid}>
               <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
                 <Entypo name='grid' size={33} color={'rgb(252,73,17)'} />
               </TouchableOpacity>
             </View>
         </View>
-        <View style={{ flex: 1}}>
+        <View style={AboutStyles.MainView}>
           <ScrollView>
-            <View style={{ alignItems: 'center' }}>
+            <View style={AboutStyles.View}>
               <View>
                 <TouchableOpacity activeOpacity={0.9}
                   onPress={() => setShow(!show)}
                 >
-                  <View style={{ flexDirection: 'row', marginTop: heightToDp('2'), width: widthToDp('90'), height: heightToDp('8'), borderRadius: widthToDp('2'), elevation: 1, backgroundColor: '#fff', alignItems: 'center' }}>
-                    <View style={{ marginStart: widthToDp('4'), width: widthToDp('75') }}>
-                      <Text style={{ color: '#000' }}>About Noor Mahal</Text>
+                  <View style={AboutStyles.AboutBox}>
+                    <View style={AboutStyles.BoxView}>
+                      <Text style={AboutStyles.BoxText}>About Abstract Brains</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
                 {show &&
-                  <View style={{ height: heightToDp('10'), elevation: 0.5, backgroundColor: '#fff', bottom: heightToDp('1'), borderBottomStartRadius: widthToDp('3'), borderBottomEndRadius: widthToDp('3'), justifyContent: 'center' }}>
-                    <Text style={{ color: '#000', fontSize: widthToDp('4'), paddingStart: widthToDp('4') }}>Please write to us on sales@barbequenation{'\n'}.com</Text>
+                  <View style={AboutStyles.ShowView}>
+                    <Text style={AboutStyles.ShowText1}>Please visit are website</Text>
+                    <TouchableOpacity onPress={()=>props.navigation.navigate('Abstract')}>
+                    <Text style={AboutStyles.ShowText2}>Abstract Brains</Text>
+                    </TouchableOpacity>
+                    
                   </View>
                 }
               </View>
@@ -65,51 +70,19 @@ export default function About(props) {
                 <TouchableOpacity onPress={() => setShow1(!show1)}
                   activeOpacity={1}
                 >
-                  <View style={{ flexDirection: 'row', marginTop: heightToDp('3'), width: widthToDp('90'), height: heightToDp('7'), borderRadius: widthToDp('3'), elevation: 1, backgroundColor: '#fff', alignItems: 'center' }}>
-                    <View style={{ marginStart: widthToDp('4'), width: widthToDp('75') }}>
-                      <Text style={{ color: '#000' }}>App Version</Text>
+                  <View style={AboutStyles.AboutBox}>
+                    <View style={AboutStyles.BoxView}>
+                      <Text style={AboutStyles.BoxText}>App Version</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
                 {
                   show1 &&
-                  <View style={{ height: heightToDp('10'), elevation: 0.5, backgroundColor: '#fff', bottom: heightToDp('1'), borderBottomStartRadius: widthToDp('3'), borderBottomEndRadius: widthToDp('3'), justifyContent: 'center' }}>
+                  <View style={AboutStyles.Show1}>
                     <View style={{marginStart:widthToDp('4')}}>
-                    <Text style={{color:'#000'}}>Version: 3.61</Text>
-                    <Text style={{color:'#000'}}>Build: 284</Text>
-                    <Text style={{color:'#000'}}>@2022-NoorMahal.com</Text>
+                    <Text style={AboutStyles.BoxText}>Version: 1.0</Text>
+                    <Text style={AboutStyles.BoxText}>@reserved by Abstract Brains 2022</Text>
                     </View>
-                  </View>
-                }
-              </View>
-              <View>
-                <TouchableOpacity onPress={() => setShow2(!show2)}
-                  activeOpacity={1}>
-                  <View style={{ flexDirection: 'row', marginTop: heightToDp('3'), width: widthToDp('90'), height: heightToDp('7'), borderRadius: widthToDp('3'), elevation: 1, backgroundColor: '#fff', alignItems: 'center' }}>
-                    <View style={{ marginStart: widthToDp('4'), width: widthToDp('75') }}>
-                      <Text style={{ color: '#000' }}>Loyalty- Smile Coins Club</Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                {show2 &&
-                  <View style={{ height: heightToDp('10'), elevation: 0.5, backgroundColor: '#fff', bottom: heightToDp('1'), borderBottomStartRadius: widthToDp('3'), borderBottomEndRadius: widthToDp('3'), justifyContent: 'center' }}>
-                    <Text style={{ color: '#000', fontSize: widthToDp('4'), paddingStart: widthToDp('4') }}>For corporate Booking write to us{'\n'}at dine@barbequenation.com or call{'\n'}+918069028721</Text>
-                  </View>
-                }
-              </View>
-              <View style={{marginBottom:heightToDp('3')}}>
-                <TouchableOpacity onPress={() => setShow3(!show3)}
-                  activeOpacity={1}
-                >
-                  <View style={{ flexDirection: 'row', marginTop: heightToDp('3'), width: widthToDp('90'), height: heightToDp('8'), borderRadius: widthToDp('3'), elevation: 3, backgroundColor: '#fff', alignItems: 'center' }}>
-                    <View style={{ marginStart: widthToDp('4'), width: widthToDp('75') }}>
-                      <Text style={{ color: '#000' }}>Feed the Daily Wager</Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                {show3 &&
-                  <View style={{ height: heightToDp('10'), elevation: 0.5, backgroundColor: '#fff', bottom: heightToDp('1'), borderBottomStartRadius: widthToDp('3'), borderBottomEndRadius: widthToDp('3'), justifyContent: 'center' }}>
-                    <Text style={{ color: '#000', fontSize: widthToDp('4'), paddingStart: widthToDp('4') }}>You can book through our App or Website or{'\n'}Call- 8069028721</Text>
                   </View>
                 }
               </View>
@@ -117,10 +90,10 @@ export default function About(props) {
           </ScrollView>
         </View>
       </SafeAreaView>
-      <View style={{ height: heightToDp('0.1')}}>
-        <View style={{ bottom: heightToDp('10'),width:widthToDp('25') }}>
+      <View style={AboutStyles.BackMainView}>
+        <View style={AboutStyles.MainBackView}>
           <TouchableOpacity onPress={() => props.navigation.replace('Menu')}>
-            <View style={{ height: heightToDp('8.5'), width: widthToDp('17.5'), borderRadius: widthToDp('15'), marginStart: widthToDp('5'), marginBottom: heightToDp('1'), backgroundColor: 'rgb(255,130,50)', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={AboutStyles.BackView}>
             <AntDesign name='arrowleft' color={'#fff'} size={25} />
             </View>
           </TouchableOpacity>

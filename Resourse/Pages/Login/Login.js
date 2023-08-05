@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, TouchableOpacity, TextInput, ToastAndroid, ScrollView, StatusBar } from 'react-native'
+import { View, Text, SafeAreaView, Image, TouchableOpacity, TextInput, ToastAndroid, ScrollView, StatusBar, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { SplashLogo } from '../../Utils/Image'
 import { heightToDp, widthToDp } from '../../Utils/Responsive'
@@ -7,12 +7,24 @@ import Feather from 'react-native-vector-icons/Feather'
 import {LOAction} from '../../Action/LoginAction'
 import {useDispatch} from 'react-redux'
 import Styles from './LoginStyle'
+import Spinner from 'react-native-loading-spinner-overlay';
+import {
+    BallIndicator,
+    BarIndicator,
+    DotIndicator,
+    MaterialIndicator,
+    PacmanIndicator,
+    PulseIndicator,
+    SkypeIndicator,
+    UIActivityIndicator,
+    WaveIndicator,
+  } from 'react-native-indicators';
 export default function Login(props) {
     
 const [email,setEmail] = useState('');
 const [password,setPassword] = useState('');
 const [isSecureText,setIsSecureText] = useState(true);
-const [loader,setloader] = useState(true)
+const [loader,setloader] = useState(false)
 
 const dispatch = useDispatch();
 const Login = ()=>{
@@ -23,12 +35,14 @@ const Login = ()=>{
         ToastAndroid.show('Enter Your Password',ToastAndroid.SHORT);
     }
     else{
+        setloader(true)
         var Data = new FormData();
         Data.append('email',email);
         Data.append('password',password);
         dispatch(LOAction.LoginAction(Data)).then( async data=>{
+            setloader(false)
             if(data.success){
-                console.log(data,'========>')
+
                 props.navigation.navigate('Menu');
             }
             else{
@@ -38,7 +52,6 @@ const Login = ()=>{
     }
 }
   return (
-
 <SafeAreaView style={Styles.container}>
 <StatusBar backgroundColor={'#fff'} 
 barStyle={'dark-content'}
@@ -89,9 +102,23 @@ barStyle={'dark-content'}
   <View style={Styles.LoginView}>
  <Text style={Styles.LoginText}>Log In</Text>
 </View>  
-</TouchableOpacity>
+</TouchableOpacity>    
 </View>
 </ScrollView>
+{
+    loader&&
+     <Spinner
+     visible={true}
+     textContent={'Loading...'}
+     textStyle={{}}
+     customIndicator={
+        <UIActivityIndicator
+          style={{}}
+          color={{}}
+        />
+      }
+   />
+}
 </SafeAreaView>
 
   )

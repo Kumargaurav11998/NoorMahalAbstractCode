@@ -22,17 +22,14 @@ const Styles = StyleSheet.create({
         marginEnd: widthToDp('6')
     },
     ChildView: {
-        marginTop: heightToDp('4')
+        marginTop: heightToDp('4'),
+        marginBottom:heightToDp('1')
     },
     Code: {
         marginStart: widthToDp('15')
     },
     CodeText: {
         color: 'rgb(255,91,5)'
-    },
-    NameCallView: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
     },
     Name: {
         marginStart: widthToDp('6'),
@@ -43,18 +40,18 @@ const Styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: widthToDp('4')
     },
-    Call: {
-        borderWidth: 1,
-        width: widthToDp('15'),
-        marginEnd: widthToDp('7'),
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: widthToDp('1.5'),
-        height: heightToDp('4')
-    },
-    CallText: {
-        fontSize: widthToDp('4'), color: '#000'
-    },
+    // Call: {
+    //     borderWidth: 1,
+    //     width: widthToDp('15'),
+    //     marginEnd: widthToDp('7'),
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     borderRadius: widthToDp('1.5'),
+    //     height: heightToDp('4')
+    // },
+    // CallText: {
+    //     fontSize: widthToDp('4'), color: '#000'
+    // },
     Date: {
         marginStart: widthToDp('6'),
         marginTop: heightToDp('0.7')
@@ -62,13 +59,13 @@ const Styles = StyleSheet.create({
     DateText: {
         color: '#000'
     },
-    Time: {
-        marginStart: widthToDp('6'),
-        marginTop: heightToDp('0.7')
-    },
-    TimeText: {
-        color: '#000'
-    },
+    // Time: {
+    //     marginStart: widthToDp('6'),
+    //     marginTop: heightToDp('0.7')
+    // },
+    // TimeText: {
+    //     color: '#000'
+    // },
     Guest: {
         color: '#000'
     },

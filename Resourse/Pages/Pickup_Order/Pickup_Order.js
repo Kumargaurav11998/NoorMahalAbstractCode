@@ -131,12 +131,7 @@ export default function Pickup_Order(props) {
                     </View>
                     <View style={Styles.UnderLine}>
                         <Text
-                            style={{
-                                fontSize: 1,
-                                borderBottomWidth: 1,
-                                color: "#a9a9a9",
-                                width: widthToDp('85')
-                            }}
+                            style={Styles.UnderLineText}
                         ></Text>
                     </View>
                 </View>

@@ -36,80 +36,72 @@ export default function Order_History(props) {
   const [Data, setData] = useState(data);
   return (
     <>
-
-<SafeAreaView style={Styles.container}>
-      <View style={Styles.TopView}>
-        <View style={Styles.TopTextView}>
-          <Text style={Styles.TopText}>Reservation</Text>
-        </View>
-        <View style={Styles.Icon1}>
-        <TouchableOpacity onPress={()=>props.navigation.openDrawer()} >
-                            <Entypo name='grid' size={33} color={'rgb(252,73,17)'} />
-                        </TouchableOpacity>
-        </View>
-      </View>
-     {Data.map((item)=>{
-      return(
-        <View style={Styles.ChildView}>
-        <View>
-          <View style={Styles.Code}>
-            <Text style={Styles.CodeText}>{item.code}</Text>
+      <SafeAreaView style={Styles.container}>
+        <View style={Styles.TopView}>
+          <View style={Styles.TopTextView}>
+            <Text style={Styles.TopText}>Order History</Text>
           </View>
-          <View style={Styles.NameCallView}>
-            <View style={Styles.Name}>
-              <Text style={Styles.NameText}>{item.name}</Text>
-            </View>
-            <View style={Styles.Name}>
-              <Text style={Styles.NameText}>{item.phone}</Text>
-            </View>
-            <TouchableOpacity onPress={()=>Dialer()}>
-              <View style={Styles.Call} >
-                <Text style={Styles.CallText}>Call</Text>
-              </View>
+          <View style={Styles.Icon1}>
+            <TouchableOpacity onPress={()=>props.navigation.openDrawer()} >
+              <Entypo name='grid' size={33} color={'rgb(252,73,17)'} />
             </TouchableOpacity>
           </View>
-          <View style={Styles.Date}>
-            <Text style={Styles.DateText}>Date:{item.Date}</Text>
-          </View>
-          <View style={Styles.Time}>
-            <Text style={Styles.TimeText}>Time:{item.Time}</Text>
-          </View>
-          <View style={Styles.Time}>
-            <Text style={Styles.Guest}>Number of Guest:{item.Guest}</Text>
-          </View>
-          <View style={Styles.Time}>
-            <Text style={Styles.Guest}>Spacial Instruction</Text>
-          </View>
-          <View style={Styles.TableCancel}>
-            <TouchableOpacity onPress={()=>Cancel()}>
-              <View style={Styles.Cancel}>
-                <Text style={Styles.CancelText}>Cancel</Text>
+        </View>
+        <ScrollView>
+        {Data.map((item)=>{
+          return(
+            <View style={Styles.ChildView}>
+            <View>
+              <View style={Styles.Code}>
+                <Text style={Styles.CodeText}>{item.code}</Text>
               </View>
-            </TouchableOpacity>
-
-            <View style={Styles.Table}>
-              <Text style={Styles.TableText}>Table Confirmed</Text>
-              <View style={Styles.Icon}>
-                <AntDesign name='checkcircleo' size={20} color={'rgb(0,155,68)'} />
+              <View style={Styles.Name}>
+                <Text style={Styles.NameText}>{item.name}</Text>
+              </View>
+              <View style={Styles.Date}>
+                <Text style={Styles.NameText}>{item.phone}</Text>
+              </View>
+              <View style={Styles.Date}>
+                <Text style={Styles.NameText}>{item.email}</Text>
+              </View>
+              <View style={Styles.Date}>
+                <Text style={Styles.NameText}>₹{item.Price}.00</Text>
+              </View>
+              <View style={Styles.Date}>
+                <Text style={Styles.DateText}>Date:{item.Date}</Text>
+              </View>
+              <View style={Styles.Date}>
+                <Text style={Styles.DateText}>Spacial Instruction</Text>
+              </View>
+              <View style={Styles.TableCancel}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('View')}>
+                  <View style={Styles.Cancel}>
+                    <Text style={Styles.CancelText}>View Order</Text>
+                  </View>
+                </TouchableOpacity>
+  
+                <View style={Styles.Table}>
+                  <Text style={Styles.TableText}>Delivered</Text>
+                  <View style={Styles.Icon}>
+                    <AntDesign name='checkcircleo' size={20} color={'rgb(0,155,68)'} />
+                  </View>
+                </View>
+              </View>
+              <View style={Styles.UnderLine}>
+                <Text
+                  style={Styles.UnderLineText}
+                ></Text>
               </View>
             </View>
           </View>
-          <View style={Styles.UnderLine}>
-            <Text
-              style={Styles.UnderLineText}
-            ></Text>
-          </View>
-        </View>
-      </View>
-      )
-
-     })}
-
-    </SafeAreaView>
-      <View style={{ height: heightToDp('0.1') }}>
-        <View style={{ bottom: heightToDp('10'), width: widthToDp('25') }}>
+          )
+        })}
+        </ScrollView>
+      </SafeAreaView>
+      <View style={Styles.BackMainView}>
+        <View style={Styles.MainView}>
           <TouchableOpacity onPress={() => props.navigation.replace('Menu')}>
-            <View style={{ height: heightToDp('8.5'), width: widthToDp('17.5'), borderRadius: widthToDp('15'), marginStart: widthToDp('5'), marginBottom: heightToDp('1'), backgroundColor: 'rgb(255,130,50)', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={Styles.BackView}>
               <AntDesign name='arrowleft' color={'#fff'} size={25} />
             </View>
           </TouchableOpacity>

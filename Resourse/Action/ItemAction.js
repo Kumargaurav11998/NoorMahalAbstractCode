@@ -4,10 +4,10 @@ export const ITEMAction = {
     ItemAction
 }
 
-function ItemAction(data){
+function ItemAction(data,token){
     return dispatch=>{
         dispatch(request());
-        return ItemService.ItemServices(data).then(
+        return ItemService.ItemServices(data,token).then(
             response =>{
                 dispatch(success(response));
                 return Promise.resolve(response);

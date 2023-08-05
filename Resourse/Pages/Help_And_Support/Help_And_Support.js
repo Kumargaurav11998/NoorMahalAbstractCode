@@ -37,7 +37,7 @@ export default function HelpSupport(props) {
         <View style={{marginEnd:widthToDp('6')}}>
         <TouchableOpacity onPress={()=>props.navigation.openDrawer()} >
                             <Entypo name='grid' size={33} color={'rgb(252,73,17)'} />
-                        </TouchableOpacity>
+        </TouchableOpacity>
         </View>
         </View>
 
@@ -90,7 +90,7 @@ export default function HelpSupport(props) {
                 <Text style={{color:'#000',fontSize:widthToDp('5')}}>Call us</Text>
               </View>
               <View>
-                <Text style={{color:'#000',fontSize:widthToDp('4.3')}}>Talk to nice,friendly human{'\n'}+19096786650</Text>
+                <Text style={{color:'#000',fontSize:widthToDp('4.3')}}>Talk to nice,friendly human{'\n'}+351920369682</Text>
               </View>
             </View>
             <View style={{justifyContent:'center',marginEnd:widthToDp('5')}}>
@@ -100,10 +100,10 @@ export default function HelpSupport(props) {
           <View style={{marginTop:heightToDp('5'),width:widthToDp('90'),height:heightToDp('12'),borderRadius:widthToDp('5'),flexDirection:'row',justifyContent:'space-between',elevation:5,backgroundColor:'#fff'}}>
             <View style={{marginStart:widthToDp('8'),marginTop:heightToDp('1')}}>
               <View>
-                <Text style={{color:'#000',fontSize:widthToDp('5')}}>Text us</Text>
+                <Text style={{color:'#000',fontSize:widthToDp('5')}}>Chat with us</Text>
               </View>
               <View>
-                <Text style={{color:'#000',fontSize:widthToDp('4.3')}}>Chat with a real person{'\n'}+19096786650</Text>
+                <Text style={{color:'#000',fontSize:widthToDp('4.3')}}>Chat with a real person{'\n'}+351920369682</Text>
               </View>
             </View>
             <View style={{justifyContent:'center',marginEnd:widthToDp('5')}}>
@@ -116,7 +116,7 @@ export default function HelpSupport(props) {
                 <Text style={{color:'#000',fontSize:widthToDp('5')}}>Email us</Text>
               </View>
               <View>
-                <Text style={{color:'#000',fontSize:widthToDp('4.3')}}>We'll get back to you soon{'\n'}gtmedia@gmail.com</Text>
+                <Text style={{color:'#000',fontSize:widthToDp('4.3')}}>We'll get back to you soon{'\n'}infoatabstractbrains.com</Text>
               </View>
             </View>
             <View style={{justifyContent:'center',marginEnd:widthToDp('5')}}>

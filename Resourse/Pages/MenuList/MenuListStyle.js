@@ -163,7 +163,7 @@ const Styles = StyleSheet.create({
         right: widthToDp('2') 
     },
     SheetView:{
-        height: heightToDp('90'), 
+        height: heightToDp('100'), 
         backgroundColor: '#fff', 
         alignItems: 'center' 
     },

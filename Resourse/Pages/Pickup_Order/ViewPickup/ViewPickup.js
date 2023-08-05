@@ -9,7 +9,7 @@ export default function ViewPickup(props) {
             <View style={Styles.TopView}>
                 
                     <View style={Styles.IconView}>
-                    <TouchableOpacity onPress={()=>props.navigation.replace('Menu')}>
+                    <TouchableOpacity onPress={()=>props.navigation.goBack()}>
                         <AntDesign name='arrowleft' size={25} color={'#000'} />
                         </TouchableOpacity>
                     </View>
@@ -25,11 +25,7 @@ export default function ViewPickup(props) {
             </View>
             <View>
                 <Text
-                    style={{
-                        fontSize: 8,
-                        borderBottomWidth: 1,
-                        color: "#191970",
-                    }}
+                    style={Styles.TopUnderline}
                 ></Text>
             </View>
             <View style={Styles.AddressView}>
@@ -42,12 +38,7 @@ export default function ViewPickup(props) {
             </View>
             <View style={Styles.UnderLine}>
                 <Text
-                    style={{
-                        fontSize: 1,
-                        borderBottomWidth: 1,
-                        color: "#191970",
-                        width: widthToDp('90')
-                    }}
+                    style={Styles.UnderLineText}
                 ></Text>
             </View>
             <View style={Styles.BillMainView}>
@@ -150,12 +141,7 @@ export default function ViewPickup(props) {
                 </View>
                 <View style={Styles.UnderLine}>
                     <Text
-                        style={{
-                            fontSize: 1,
-                            borderBottomWidth: 1,
-                            color: "#191970",
-                            width: widthToDp('90')
-                        }}
+                        style={Styles.UnderLineText}
                     ></Text>
                 </View>
                 <View style={Styles.Total}>

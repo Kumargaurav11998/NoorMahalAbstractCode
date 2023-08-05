@@ -20,6 +20,8 @@ import HelpSupport from '../../Pages/Help_And_Support/Help_And_Support';
 import About from '../../Pages/About/About';
 import ViewPickup from '../../Pages/Pickup_Order/ViewPickup/ViewPickup';
 import AddItem from '../../Pages/AddItem/AddItem';
+import EditItem from '../../Pages/EditItem/EditItem';
+import Abstract from '../../Pages/About/Abstract';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -82,6 +84,16 @@ const MenuNavigation = ()=>{
         <Stack.Screen 
         name="Add_Item"
          component={AddItem}
+         options={{headerShown:false}}
+         />
+        <Stack.Screen 
+        name="Edit_Item"
+         component={EditItem}
+         options={{headerShown:false}}
+         />
+        <Stack.Screen 
+        name="Abstract"
+         component={Abstract}
          options={{headerShown:false}}
          />
       </Stack.Navigator>

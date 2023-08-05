@@ -71,6 +71,7 @@ export default function Add_Promo(props) {
               style={{marginTop:heightToDp('50')}}
 />
     ):(
+      <ScrollView>
 <View>
 <View style={Styles.TopView}>
         <View style={Styles.AddPromo}>
@@ -132,6 +133,7 @@ renderItem={({item})=>{
 />
 </View>
 </View>
+</ScrollView>
     )}
 
 

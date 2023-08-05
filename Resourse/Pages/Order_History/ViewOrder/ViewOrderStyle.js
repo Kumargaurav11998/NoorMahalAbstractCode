@@ -47,9 +47,20 @@ const Styles = StyleSheet.create({
         fontSize: widthToDp('4'),
         color: '#000'
     },
+    TopUnderline:{
+        fontSize: 8,
+        borderBottomWidth: 1,
+        color: "#191970",
+    },
     UnderLine: {
         marginTop: heightToDp('3'),
         alignItems: 'center',
+    },
+    UnderLineText: {
+        fontSize: 1,
+        borderBottomWidth: 1,
+        color: "#a9a9a9",
+        width: widthToDp('85')
     },
     BillMainView: {
         marginStart: widthToDp('4'),

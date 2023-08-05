@@ -131,6 +131,12 @@ marginEnd:widthToDp('6')
         marginTop: heightToDp('4'),
         alignItems: 'center'
     },
+    UnderLineText: {
+        fontSize: 1,
+        borderBottomWidth: 1,
+        color: "#a9a9a9",
+        width: widthToDp('85')
+    },
     BackButton: {
         height: heightToDp('0.1')
     },

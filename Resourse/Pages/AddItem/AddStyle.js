@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native'
 import { heightToDp, widthToDp } from '../../Utils/Responsive'
-const Styles = StyleSheet.create({
+const AddStyles = StyleSheet.create({
 container:{
     flex: 1, 
     backgroundColor: '#fff' 
@@ -71,4 +71,4 @@ Description:{
 }
 });
 
-export default Styles
+export default AddStyles

@@ -3,15 +3,19 @@ import React, { useState } from 'react'
 import { heightToDp, widthToDp } from '../../Utils/Responsive'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { FirstSlide, PizzaLogo, Slide1, Slider2, RDLogo } from '../../Utils/Image'
 import Swiper from 'react-native-swiper'
 import Styles from './MenuListStyle'
+import AddStyles from '../AddItem/AddStyle'
 import { BottomSheet } from 'react-native-btr';
-import {useDispatch, useSelector} from 'react-redux'
+import { Camera, Gallery } from '../../Utils/Image'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import {BANEERAction} from '../../Action/BaneerAction'
+import { BANEERAction } from '../../Action/BaneerAction'
 export default function MenuList(props) {
 
   const data = [
@@ -50,9 +54,10 @@ Mushroom,Onion
       setSearchData(data);
     }
   }
-  const token= useSelector(state=>state.LoginReducer.Login[0].token);
-  const [checked,setChecked] = useState([])
+  const token = useSelector(state => state.LoginReducer.Login[0].token);
+  const [checked, setChecked] = useState([])
   const [loader, setloader] = useState(true);
+  const [add,setAdd] = useState(false)
   const [searchdata, setSearchData] = useState(data);
   const [visible, setVisible] = useState(false);
   const [Recomanded, setRecomanded] = useState(true);
@@ -67,87 +72,89 @@ Mushroom,Onion
     setVisible(!visible);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     Baneer(token);
-   },[])
+  }, [])
 
-const Baneer = (token)=>{
-  dispatch(BANEERAction.BaneerAction(token)).then(async data =>{
-    if(data){
-     setChecked(data.data);
-      setloader(false);
-    }
+  const Baneer = (token) => {
+    dispatch(BANEERAction.BaneerAction(token)).then(async data => {
+      if (data) {
+        setChecked(data.data);
+        setloader(false);
+      }
 
-})
-}
-
-const Images=[
-  {image:'http://noormahal.abstractbrains.uk/public/banner/banner-1.jpeg'},
-  {image:'http://noormahal.abstractbrains.uk/public/banner/banner-2.jpeg'},
-  {image:'http://noormahal.abstractbrains.uk/public/banner/banner-3.jpeg'},
-  {image:'http://noormahal.abstractbrains.uk/public/banner/banner-4.jpeg'},
-]
+    })
+  }
+  const AddImage = ()=>{
+    setAdd(!add);
+  }
+  const Images = [
+    { image: 'http://noormahal.abstractbrains.uk/public/banner/banner-1.jpeg' },
+    { image: 'http://noormahal.abstractbrains.uk/public/banner/banner-2.jpeg' },
+    { image: 'http://noormahal.abstractbrains.uk/public/banner/banner-3.jpeg' },
+    { image: 'http://noormahal.abstractbrains.uk/public/banner/banner-4.jpeg' },
+  ]
   return (
     <>
       <SafeAreaView style={Styles.container}>
         <StatusBar barStyle='dark-content' backgroundColor={'#fff'} />
         {loader ? (
-<ActivityIndicator
-              size="large"
-              color={'#000'}
-              style={{marginTop:heightToDp('50')}}
-/>
-        ):(
+          <ActivityIndicator
+            size="large"
+            color={'#000'}
+            style={{ marginTop: heightToDp('50') }}
+          />
+        ) : (
           <View style={Styles.MainView}>
 
-          <View style={Styles.TopView}>
-            {/* <View style={{ marginTop: heightToDp('1') }}>
+            <View style={Styles.TopView}>
+              {/* <View style={{ marginTop: heightToDp('1') }}>
             <AntDesign name='left' size={30} color={'#fff'} />
           </View> */}
-            <View style={Styles.FlexView}>
-              <View style={Styles.SearchBar}>
-                <View style={Styles.SearchIcon}>
-                  <AntDesign name='search1' color={'red'} size={18} />
+              <View style={Styles.FlexView}>
+                <View style={Styles.SearchBar}>
+                  <View style={Styles.SearchIcon}>
+                    <AntDesign name='search1' color={'red'} size={18} />
+                  </View>
+                  <View style={Styles.TextInputView}>
+                    <TextInput
+                      placeholder='Search Menu'
+                      placeholderTextColor={'#a9a9a9'}
+                      onChangeText={(input) => {
+                        Search(input);
+                      }}
+                      style={Styles.TextInput}
+                    />
+                  </View>
                 </View>
-                <View style={Styles.TextInputView}>
-                  <TextInput
-                    placeholder='Search Menu'
-                    placeholderTextColor={'#a9a9a9'}
-                    onChangeText={(input) => {
-                      Search(input);
+                <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
+                  <View style={Styles.MenuView}>
+                    <AntDesign name='ellipsis1' color={'#000'} size={20} />
+                  </View>
+                </TouchableOpacity>
+
+              </View>
+            </View>
+            <View style={Styles.BanerMainView}>
+              <View style={Styles.BanerView}>
+                <View>
+                  <FlatList
+                    pagingEnabled={true}
+                    horizontal={true}
+                    data={Images}
+                    renderItem={({ item }) => {
+                      return (
+                        <View>
+                          <Image source={{ uri: item.image }} style={Styles.BanerImage} />
+                        </View>
+                      )
                     }}
-                    style={Styles.TextInput}
                   />
                 </View>
+
               </View>
-              <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
-                <View style={Styles.MenuView}>
-                  <AntDesign name='ellipsis1' color={'#000'} size={20} />
-                </View>
-              </TouchableOpacity>
-
             </View>
           </View>
-          <View style={Styles.BanerMainView}>
-            <View style={Styles.BanerView}>
-                <View>
-                <FlatList 
-                pagingEnabled={true}
-                horizontal={true}
-                data={Images}
-                renderItem={({item})=>{
-                return(
-                  <View>
-                  <Image source={{uri:item.image}} style={Styles.BanerImage} />
-                </View>
-                )
-                }}
-                />
-                </View>
-
-            </View>
-          </View>
-        </View>
         )}
 
         <ScrollView>
@@ -197,61 +204,11 @@ const Images=[
                             <Image source={item.image} />
                           </View>
                           <View style={Styles.EditButtonView}>
-                            <TouchableOpacity onPress={() => toggleBottomNavigationView()} >
+                            <TouchableOpacity onPress={() =>props.navigation.navigate('Edit_Item',{Data:item})}>
                               <View style={Styles.EditButton}>
                                 <Text style={Styles.EditButtonText}>Edit</Text>
                               </View>
                             </TouchableOpacity>
-                            <View>
-                             <BottomSheet
-                                visible={visible}
-                                onBackButtonPress={toggleBottomNavigationView}>
-
-                                  <View style={Styles.SheetView}>
-                                  <ScrollView>
-                                    <View style={Styles.SheetImView}>
-                                      <Image source={item.image} style={Styles.SheetImg} />
-                                    </View>
-                                    <View>
-                                      <View style={Styles.EditInput}>
-                                        <TextInput
-                                          placeholder={item.name}
-                                          defaultValue={item.name}
-                                          placeholderTextColor={'#000'}
-                                          style={Styles.EditText}
-                                        />
-                                      </View>
-                                      <View style={Styles.EditInput}>
-                                        <TextInput
-                                          placeholder={item.Price}
-                                          defaultValue={item.Price}
-                                          keyboardType={'numeric'}
-                                          placeholderTextColor={'#000'}
-                                          style={Styles.EditText}
-                                        />
-                                      </View>
-                                      <View style={Styles.EditInput}>
-                                        <TextInput
-                                          placeholder={item.subtitle}
-                                          defaultValue={item.subtitle}
-                                          placeholderTextColor={'#000'}
-                                          style={Styles.EditText}
-                                        />
-                                      </View>
-                                    </View>
-                                    <TouchableOpacity>
-                                      <View style={Styles.SubmitMain}>
-                                                                              <View style={Styles.SubmitView} >
-                                        <Text style={Styles.SubmitText}>Submit</Text>
-                                      </View>
-                                      </View>
-
-                                    </TouchableOpacity>
-                                    </ScrollView>
-                                  </View>
-
-                              </BottomSheet>
-                            </View>
                           </View>
                         </View>
                       </View>
@@ -270,17 +227,17 @@ const Images=[
 
             <View>
               <TouchableOpacity onPress={() => setSalad(!salad)}>
-              <View style={Styles.RecomandedMain}>
+                <View style={Styles.RecomandedMain}>
 
-<View style={Styles.RecomandedView}>
-  <Text style={Styles.RecomandedText}>Salad (2)</Text>
-</View>
-<View style={Styles.RecomandedIcon}>
-  {salad == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
-    <AntDesign name='caretup' size={15} color={'#000'} />}
+                  <View style={Styles.RecomandedView}>
+                    <Text style={Styles.RecomandedText}>Salad (2)</Text>
+                  </View>
+                  <View style={Styles.RecomandedIcon}>
+                    {salad == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
+                      <AntDesign name='caretup' size={15} color={'#000'} />}
 
-</View>
-</View>
+                  </View>
+                </View>
               </TouchableOpacity>
               {salad &&
                 <>
@@ -335,17 +292,17 @@ const Images=[
             </View>
             <View>
               <TouchableOpacity onPress={() => setPizza(!Pizza)}>
-              <View style={Styles.RecomandedMain}>
+                <View style={Styles.RecomandedMain}>
 
-<View style={Styles.RecomandedView}>
-  <Text style={Styles.RecomandedText}>Pizza (2)</Text>
-</View>
-<View style={Styles.RecomandedIcon}>
-  {Pizza == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
-    <AntDesign name='caretup' size={15} color={'#000'} />}
+                  <View style={Styles.RecomandedView}>
+                    <Text style={Styles.RecomandedText}>Pizza (2)</Text>
+                  </View>
+                  <View style={Styles.RecomandedIcon}>
+                    {Pizza == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
+                      <AntDesign name='caretup' size={15} color={'#000'} />}
 
-</View>
-</View>
+                  </View>
+                </View>
               </TouchableOpacity>
               {Pizza &&
                 <>
@@ -400,17 +357,17 @@ const Images=[
             </View>
             <View>
               <TouchableOpacity onPress={() => setBurger(!Burger)}>
-              <View style={Styles.RecomandedMain}>
+                <View style={Styles.RecomandedMain}>
 
-<View style={Styles.RecomandedView}>
-  <Text style={Styles.RecomandedText}>Burger (2)</Text>
-</View>
-<View style={Styles.RecomandedIcon}>
-  {Burger == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
-    <AntDesign name='caretup' size={15} color={'#000'} />}
+                  <View style={Styles.RecomandedView}>
+                    <Text style={Styles.RecomandedText}>Burger (2)</Text>
+                  </View>
+                  <View style={Styles.RecomandedIcon}>
+                    {Burger == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
+                      <AntDesign name='caretup' size={15} color={'#000'} />}
 
-</View>
-</View>
+                  </View>
+                </View>
               </TouchableOpacity>
               {Burger &&
                 <>
@@ -465,17 +422,17 @@ const Images=[
             </View>
             <View>
               <TouchableOpacity onPress={() => setSand(!Sand)}>
-              <View style={Styles.RecomandedMain}>
+                <View style={Styles.RecomandedMain}>
 
-<View style={Styles.RecomandedView}>
-  <Text style={Styles.RecomandedText}>Sandwitch (2)</Text>
-</View>
-<View style={Styles.RecomandedIcon}>
-  {Sand == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
-    <AntDesign name='caretup' size={15} color={'#000'} />}
+                  <View style={Styles.RecomandedView}>
+                    <Text style={Styles.RecomandedText}>Sandwitch (2)</Text>
+                  </View>
+                  <View style={Styles.RecomandedIcon}>
+                    {Sand == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
+                      <AntDesign name='caretup' size={15} color={'#000'} />}
 
-</View>
-</View>
+                  </View>
+                </View>
               </TouchableOpacity>
               {Sand &&
                 <>
@@ -530,17 +487,17 @@ const Images=[
             </View>
             <View>
               <TouchableOpacity onPress={() => setSub(!Sub)}>
-              <View style={Styles.RecomandedMain}>
+                <View style={Styles.RecomandedMain}>
 
-<View style={Styles.RecomandedView}>
-  <Text style={Styles.RecomandedText}>Sub (2)</Text>
-</View>
-<View style={Styles.RecomandedIcon}>
-  {Sub == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
-    <AntDesign name='caretup' size={15} color={'#000'} />}
+                  <View style={Styles.RecomandedView}>
+                    <Text style={Styles.RecomandedText}>Sub (2)</Text>
+                  </View>
+                  <View style={Styles.RecomandedIcon}>
+                    {Sub == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
+                      <AntDesign name='caretup' size={15} color={'#000'} />}
 
-</View>
-</View>
+                  </View>
+                </View>
               </TouchableOpacity>
               {Sub &&
                 <>
@@ -597,17 +554,17 @@ const Images=[
 
             <View>
               <TouchableOpacity onPress={() => setWrap(!Wrap)}>
-              <View style={Styles.RecomandedMain}>
+                <View style={Styles.RecomandedMain}>
 
-<View style={Styles.RecomandedView}>
-  <Text style={Styles.RecomandedText}>Wrap (1)</Text>
-</View>
-<View style={Styles.RecomandedIcon}>
-  {Wrap == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
-    <AntDesign name='caretup' size={15} color={'#000'} />}
+                  <View style={Styles.RecomandedView}>
+                    <Text style={Styles.RecomandedText}>Wrap (1)</Text>
+                  </View>
+                  <View style={Styles.RecomandedIcon}>
+                    {Wrap == false ? <AntDesign name='caretdown' size={15} color={'#000'} /> :
+                      <AntDesign name='caretup' size={15} color={'#000'} />}
 
-</View>
-</View>
+                  </View>
+                </View>
               </TouchableOpacity>
               {Wrap &&
                 <>
@@ -666,7 +623,7 @@ const Images=[
       </SafeAreaView>
       <View style={Styles.BottomView}>
         <View style={Styles.AddMain}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate('Add_Item')}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Add_Item')}>
             <View style={Styles.AddView}>
               <Entypo name='plus' size={25} color={'#fff'} />
             </View>
